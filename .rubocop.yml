@@ -1,0 +1,78 @@
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+
+Bundler:
+  Enabled: true
+Gemspec:
+  Enabled: true
+Layout:
+  Enabled: true
+Lint:
+  Enabled: true
+Metrics:
+  Enabled: false
+Naming:
+  Enabled: true
+Performance:
+  Enabled: true
+Rails:
+  Enabled: true
+Security:
+  Enabled: true
+Style:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+Layout/IndentationWidth:
+  Enabled: true
+Layout/LineLength:
+  Max: 150
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false
+
+Rails/BulkChangeTable:
+  Enabled: false
+Rails/DynamicFindBy:
+  Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false
+Rails/I18nLocaleTexts:
+  Enabled: false
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+Rails/OutputSafety:
+  Enabled: false
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - production
+
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/RedundantRegexpEscape:
+  Enabled: false
+Style/StringLiterals:
+  Include:
+    - "app/**/*"
+    - "config/**/*"
+    - "lib/**/*"
+    - "test/**/*"
+    - "spec/**/*"
+    - "Gemfile"
