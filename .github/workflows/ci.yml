@@ -36,9 +36,10 @@ jobs:
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in gems
-        env:
-          RAILS_ENV: test
-        run: bundle audit update && bundle audit
+        run: |
+          gem install bundler-audit
+          bundle audit update
+          bundle audit
 
   scan_js:
     runs-on: ubuntu-latest
