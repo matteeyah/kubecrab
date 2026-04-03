@@ -53,7 +53,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="mt-auto">
+              <% if current_user.admin? %>
+              <li>
                 <div class="text-xs/6 font-semibold text-gray-400">Admin</div>
                 <ul role="list" class="-mx-2 mt-2 space-y-1">
                   <li>
@@ -64,12 +65,19 @@
                   </li>
                   <li>
                     <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                      <%= heroicon "cog-6-tooth", options: { class: "size-6 shrink-0" } %>
-                      Settings
+                      <%= heroicon "cpu-chip", options: { class: "size-6 shrink-0" } %>
+                      Crab Engines
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
+                      <%= heroicon "users", options: { class: "size-6 shrink-0" } %>
+                      Users
                     </a>
                   </li>
                 </ul>
               </li>
+              <% end %>
             </ul>
           </nav>
         </div>
@@ -83,7 +91,7 @@
   <!-- Sidebar component, swap this element with another sidebar if you like -->
   <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 pb-4">
     <div class="flex h-16 shrink-0 items-center">
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />
+      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto">
     </div>
     <nav class="flex flex-1 flex-col">
       <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -97,7 +105,8 @@
             </li>
           </ul>
         </li>
-        <li class="mt-auto">
+        <% if current_user.admin? %>
+        <li>
           <div class="text-xs/6 font-semibold text-gray-400">Admin</div>
           <ul role="list" class="-mx-2 mt-2 space-y-1">
             <li>
@@ -108,12 +117,19 @@
             </li>
             <li>
               <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                <%= heroicon "cog-6-tooth", options: { class: "size-6 shrink-0" } %>
-                Settings
+                <%= heroicon "cpu-chip", options: { class: "size-6 shrink-0" } %>
+                Crab Engines
+              </a>
+            </li>
+            <li>
+              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
+                <%= heroicon "users", options: { class: "size-6 shrink-0" } %>
+                Users
               </a>
             </li>
           </ul>
         </li>
+        <% end %>
       </ul>
     </nav>
   </div>
@@ -157,7 +173,7 @@
           </button>
           <el-menu anchor="bottom end" popover class="w-32 origin-top-right rounded-md bg-white py-2 shadow-lg outline outline-gray-900/5 transition transition-discrete [--anchor-gap:--spacing(2.5)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
             <a href="#" class="block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-white/5">Your profile</a>
-            <a href="#" class="block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-white/5">Sign out</a>
+            <%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-white/5" %>
           </el-menu>
         </el-dropdown>
       </div>
