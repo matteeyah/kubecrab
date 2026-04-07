@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-white dark:bg-gray-900">
+<html class="h-full bg-gray-50 dark:bg-gray-900">
   <head>
     <title><%= content_for(:title) || "Kubecrab" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -39,42 +39,24 @@
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10 dark:before:pointer-events-none dark:before:absolute dark:before:inset-0 dark:before:bg-black/10">
           <div class="relative flex h-16 shrink-0 items-center">
-            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />
+            <img src="<%= image_path("crab.svg") %>" alt="KubeCrab" class="h-8 w-auto">
           </div>
           <nav class="relative flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" class="-mx-2 space-y-1">
-                  <li>
-                    <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                      <%= heroicon "cube", options: { class: "size-6 shrink-0" } %>
-                      Crabs
-                    </a>
-                  </li>
+                  <% Rails.application.config.x.theme.menu.each do |name, item| %>
+                    <%= render "layouts/menu", name: name, icon: item.first, path: item.last, active: current_controller?(item.last) %>
+                  <% end %>
                 </ul>
               </li>
               <% if current_user.admin? %>
               <li>
                 <div class="text-xs/6 font-semibold text-gray-400">Admin</div>
                 <ul role="list" class="-mx-2 mt-2 space-y-1">
-                  <li>
-                    <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                      <%= heroicon "bolt", options: { class: "size-6 shrink-0" } %>
-                      Crab Templates
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                      <%= heroicon "cpu-chip", options: { class: "size-6 shrink-0" } %>
-                      Crab Engines
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                      <%= heroicon "users", options: { class: "size-6 shrink-0" } %>
-                      Users
-                    </a>
-                  </li>
+                  <% Rails.application.config.x.theme.admin_menu.each do |name, item| %>
+                    <%= render "layouts/menu", name: name, icon: item.first, path: item.last, active: current_controller?(item.last) %>
+                  <% end %>
                 </ul>
               </li>
               <% end %>
@@ -91,42 +73,24 @@
   <!-- Sidebar component, swap this element with another sidebar if you like -->
   <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 pb-4">
     <div class="flex h-16 shrink-0 items-center">
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto">
+      <img src="<%= image_path("crab.svg") %>" alt="KubeCrab" class="h-8 w-auto">
     </div>
     <nav class="flex flex-1 flex-col">
       <ul role="list" class="flex flex-1 flex-col gap-y-7">
         <li>
           <ul role="list" class="-mx-2 space-y-1">
-            <li>
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                <%= heroicon "cube", options: { class: "size-6 shrink-0" } %>
-                Crabs
-              </a>
-            </li>
+            <% Rails.application.config.x.theme.menu.each do |name, item| %>
+              <%= render "layouts/menu", name: name, icon: item.first, path: item.last, active: current_controller?(item.last) %>
+            <% end %>
           </ul>
         </li>
         <% if current_user.admin? %>
         <li>
           <div class="text-xs/6 font-semibold text-gray-400">Admin</div>
           <ul role="list" class="-mx-2 mt-2 space-y-1">
-            <li>
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                <%= heroicon "bolt", options: { class: "size-6 shrink-0" } %>
-                Crab Templates
-              </a>
-            </li>
-            <li>
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                <%= heroicon "cpu-chip", options: { class: "size-6 shrink-0" } %>
-                Crab Engines
-              </a>
-            </li>
-            <li>
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white">
-                <%= heroicon "users", options: { class: "size-6 shrink-0" } %>
-                Users
-              </a>
-            </li>
+            <% Rails.application.config.x.theme.admin_menu.each do |name, item| %>
+              <%= render "layouts/menu", name: name, icon: item.first, path: item.last, active: current_controller?(item.last) %>
+            <% end %>
           </ul>
         </li>
         <% end %>
@@ -163,7 +127,7 @@
           <button class="relative flex items-center">
             <span class="absolute -inset-1.5"></span>
             <span class="sr-only">Open user menu</span>
-            <img src="<%= user_avatar %>" alt="" class="size-8 rounded-full bg-gray-50 outline -outline-offset-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10">
+            <%= user_avatar("size-8") %>
             <span class="hidden lg:flex lg:items-center">
               <span aria-hidden="true" class="ml-4 text-sm/6 font-semibold text-gray-900 dark:text-white"><%= current_user.display_name %></span>
               <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="ml-2 size-5 text-gray-400 dark:text-gray-500">
@@ -172,7 +136,7 @@
             </span>
           </button>
           <el-menu anchor="bottom end" popover class="w-32 origin-top-right rounded-md bg-white py-2 shadow-lg outline outline-gray-900/5 transition transition-discrete [--anchor-gap:--spacing(2.5)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
-            <a href="#" class="block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-white/5">Your profile</a>
+            <%= link_to "Your profile", profile_path, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-white/5" %>
             <%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-white/5" %>
           </el-menu>
         </el-dropdown>

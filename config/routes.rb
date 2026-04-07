@@ -11,5 +11,23 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "crabs#index"
+  root "templates#index"
+
+  resources :crabs do
+    member do
+      get "restart"
+      get "upgrade"
+    end
+  end
+
+  resource :profile, only: %i[show update destroy], controller: :profile
+  resources :templates, only: %i[index]
+
+  namespace :admin do
+    resources :templates do
+      resources :options, controller: :template_options
+    end
+    resources :engines
+    resources :users
+  end
 end

@@ -1,0 +1,9 @@
+<%# locals: (name:, icon:, path:, active:) %>
+<li>
+  <% classes = "text-gray-400 hover:text-white hover:bg-white/5" %>
+  <% classes = "bg-white/5 text-white" if active %>
+  <a href="<%= path %>" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold <%= classes %>">
+    <%= heroicon icon, options: { class: "size-6 shrink-0" } %>
+    <%= name %>
+  </a>
+</li>

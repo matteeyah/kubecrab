@@ -1,0 +1,90 @@
+<div class="md:flex md:items-center md:justify-between">
+  <div class="min-w-0 flex-1">
+    <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">Your profile</h2>
+  </div>
+</div>
+
+<div class="divide-y divide-gray-200 dark:divide-white/10">
+  <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 py-16 md:grid-cols-3">
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Personal Information</h2>
+      <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">Create a new account if you want to change your email address.</p>
+    </div>
+
+    <%= form_for current_user, url: profile_path, html: {class: "md:col-span-2"} do |form| %>
+      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+        <div class="col-span-full">
+          <%= form.label :avatar, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= user_avatar("size-16") %>
+          </div>
+          <div class="mt-4">
+            <%= form.file_field :avatar, class: "w-52 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20" %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-full">
+          <%= form.label :name, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= form.text_field :name, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+          </div>
+          <%= form.error_message(:name) %>
+        </div>
+
+        <div class="col-span-full">
+          <%= form.label :email, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= form.text_field :email, disabled: true, class: "block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:outline-gray-200 sm:text-sm/6 dark:bg-white/5 dark:text-gray-300 dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500 dark:disabled:bg-white/10 dark:disabled:text-gray-500 dark:disabled:outline-white/5" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex">
+        <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 py-16 md:grid-cols-3">
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Change password</h2>
+      <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">Update your password associated with your account.</p>
+    </div>
+
+    <%= form_for current_user, url: profile_path, html: {class: "md:col-span-2"} do |form| %>
+      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+        <%= form.hidden_field :reset_password_token %>
+        <div class="col-span-full">
+          <%= form.label :password, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= form.password_field :password, autocomplete: "none", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 pl  aceholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+          </div>
+          <%= form.error_message(:password) %>
+        </div>
+
+        <div class="col-span-full">
+          <%= form.label :password_confirmation, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= form.password_field :password_confirmation, autocomplete: "none", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 pl  aceholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+          </div>
+          <%= form.error_message(:password_confirmation) %>
+        </div>
+      </div>
+
+      <div class="mt-8 flex">
+        <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 py-16 md:grid-cols-3">
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Delete account</h2>
+      <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">No longer want to use our service? You can delete your account here. This action is not reversible. All information related to this account will be deleted permanently.</p>
+    </div>
+
+    <div class="flex items-start md:col-span-2">
+      <%= link_to "Yes, delete my account", profile_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="md:flex md:items-center md:justify-between">
+  <div class="min-w-0 flex-1">
+    <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">Crab Templates</h2>
+  </div>
+</div>
+
+<div class="divide-y divide-gray-200 dark:divide-white/10">
+  <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 py-16 md:grid-cols-3">
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">New Template</h2>
+      <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">Template options for the new template</p>
+    </div>
+
+    <%= form_for @template, url: admin_templates_path(@template), html: {class: "md:col-span-2"} do |form| %>
+      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+        <div class="sm:col-span-full">
+          <%= form.label :name, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= form.text_field :name, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+          </div>
+          <%= form.error_message(:name) %>
+        </div>
+
+        <div class="col-span-full">
+          <%= form.label :avatar, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <% if @template.avatar.attached? %>
+              <%= image_tag @template.avatar, class: "size-16 rounded-md" %>
+            <% else %>
+              <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-16 text-gray-300 dark:text-gray-500">
+                <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />
+              </svg>
+            <% end %>
+          </div>
+          <div class="mt-4">
+            <%= form.file_field :avatar, class: "w-52 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20" %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-3">
+          <%= form.label :engine_id, "Engine", class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2 grid grid-cols-1">
+            <%= form.select :engine_id, Engine.pluck(:name, :id), {}, class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500" %>
+            <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
+              <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+            </svg>
+          </div>
+          <%= form.error_message(:engine_id) %>
+        </div>
+
+        <div class="sm:col-span-3">
+          <%= form.label :status, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2 grid grid-cols-1">
+            <%= form.select :status, ::Template.statuses.keys, {}, class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500" %>
+            <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
+              <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+            </svg>
+          </div>
+          <%= form.error_message(:status) %>
+        </div>
+      </div>
+
+      <div class="mt-8 flex">
+        <%= form.submit "Next", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500" %>
+      </div>
+    <% end %>
+  </div>
+</div>

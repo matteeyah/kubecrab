@@ -5,6 +5,17 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def permitted_attributes
+    all = %i[name avatar]
+
+    return all unless self?
+
+    all << :reset_password_token
+    all << :password
+    all << :password_confirmation
+    all
+  end
+
   class Scope < ApplicationPolicy::Scope
     def resolve
       if user.admin?
@@ -13,5 +24,11 @@ class UserPolicy < ApplicationPolicy
         scope.where(id: user.id)
       end
     end
+  end
+
+  private
+
+  def self?
+    user == record
   end
 end
