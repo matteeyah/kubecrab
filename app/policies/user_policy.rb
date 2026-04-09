@@ -7,12 +7,13 @@ class UserPolicy < ApplicationPolicy
 
   def permitted_attributes
     all = %i[name avatar]
+    all.push(:role) if user.admin?
 
     return all unless self?
 
-    all << :reset_password_token
-    all << :password
-    all << :password_confirmation
+    all.push(:reset_password_token)
+    all.push(:password)
+    all.push(:password_confirmation)
     all
   end
 

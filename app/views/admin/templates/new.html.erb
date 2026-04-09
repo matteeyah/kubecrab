@@ -14,15 +14,15 @@
     <%= form_for @template, url: admin_templates_path(@template), html: {class: "md:col-span-2"} do |form| %>
       <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
         <div class="sm:col-span-full">
-          <%= form.label :name, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :name, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :name, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :name, autocomplete: "name", autofocus: true, class: css_text %>
           </div>
           <%= form.error_message(:name) %>
         </div>
 
         <div class="col-span-full">
-          <%= form.label :avatar, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :avatar, class: css_label %>
           <div class="mt-2">
             <% if @template.avatar.attached? %>
               <%= image_tag @template.avatar, class: "size-16 rounded-md" %>
@@ -38,9 +38,9 @@
         </div>
 
         <div class="sm:col-span-3">
-          <%= form.label :engine_id, "Engine", class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :engine_id, "Engine", class: css_label %>
           <div class="mt-2 grid grid-cols-1">
-            <%= form.select :engine_id, Engine.pluck(:name, :id), {}, class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500" %>
+            <%= form.select :engine_id, Engine.pluck(:name, :id), {}, class: css_select %>
             <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
               <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
             </svg>
@@ -49,9 +49,9 @@
         </div>
 
         <div class="sm:col-span-3">
-          <%= form.label :status, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :status, class: css_label %>
           <div class="mt-2 grid grid-cols-1">
-            <%= form.select :status, ::Template.statuses.keys, {}, class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500" %>
+            <%= form.select :status, ::Template.statuses.keys, {}, class: css_select %>
             <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
               <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
             </svg>
@@ -61,7 +61,7 @@
       </div>
 
       <div class="mt-8 flex">
-        <%= form.submit "Next", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500" %>
+        <%= form.submit "Next", class: css_button %>
       </div>
     <% end %>
   </div>

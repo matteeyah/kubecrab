@@ -1,0 +1,69 @@
+<div class="md:flex md:items-center md:justify-between">
+  <div class="min-w-0 flex-1">
+    <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">User <%= @user.display_name %></h2>
+  </div>
+</div>
+
+<div class="divide-y divide-gray-200 dark:divide-white/10">
+  <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 py-16 md:grid-cols-3">
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Personal Information</h2>
+      <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">Create a new account if you want to change the email address.</p>
+    </div>
+
+    <%= form_for @user, url: admin_user_path(@user), html: {class: "md:col-span-2"} do |form| %>
+      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+        <div class="col-span-full">
+          <%= form.label :avatar, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <div class="mt-2">
+            <%= user_avatar("size-16", user: @user) %>
+          </div>
+          <div class="mt-4">
+            <%= form.file_field :avatar, class: "w-52 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20" %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-full">
+          <%= form.label :name, class: css_label %>
+          <div class="mt-2">
+            <%= form.text_field :name, autocomplete: "name", class: css_text %>
+          </div>
+          <%= form.error_message(:name) %>
+        </div>
+
+        <div class="col-span-full">
+          <%= form.label :email, class: css_label %>
+          <div class="mt-2">
+            <%= form.text_field :email, disabled: true, class: css_text %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-3">
+          <%= form.label :role, class: css_label %>
+          <div class="mt-2 grid grid-cols-1">
+            <%= form.select :role, User.roles.keys, {}, class: css_select %>
+            <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
+              <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+            </svg>
+          </div>
+          <%= form.error_message(:role) %>
+        </div>
+      </div>
+
+      <div class="mt-8 flex">
+        <%= form.submit "Save", class: css_button %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 py-16 md:grid-cols-3">
+    <div>
+      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Delete account</h2>
+      <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">This action is not reversible. All information related to this account will be deleted permanently.</p>
+    </div>
+
+    <div class="flex items-start md:col-span-2">
+      <%= link_to "Yes, delete account", admin_user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: css_button_secondary %>
+    </div>
+  </div>
+</div>

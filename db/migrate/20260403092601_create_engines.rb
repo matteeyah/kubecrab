@@ -4,7 +4,7 @@ class CreateEngines < ActiveRecord::Migration[8.0]
       t.string :name, null: false
       t.string :deploy_command, null: false
       t.string :status_command, null: false
-      t.string :update_command, null: false
+      t.string :upgrade_command, null: false
       t.string :restart_command, null: false
       t.string :destroy_command, null: false
       t.timestamps

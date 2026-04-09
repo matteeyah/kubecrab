@@ -3,13 +3,25 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 
+ActiveRecord::Migration.say_with_time("Creating admin user...") do
+  next if User.find_by(email: "admin@localhost")
+
+  user = User.find_or_create_by(
+    email: "admin@localhost",
+    name: "Admin",
+    role: :admin
+  )
+  user.password = "changeme"
+  user.save!
+end
+
 ActiveRecord::Migration.say_with_time("Creating engines...") do
   Engine.find_or_create_by(
     name: "kubernetes",
-    deploy_command: "kubectl apply -f %TEMPLATE%",
-    status_command: "kubectl -n %NAMESPACE% get pod -l app=%NAME%",
-    update_command: "kubectl apply -f %TEMPLATE%",
-    restart_command: "kubectl -n %NAMESPACE% rollout restart deployment %NAME%",
-    destroy_command: "kubectl delete -f %TEMPLATE%"
+    deploy_command: "kubectl apply -f <%= template %>",
+    status_command: "kubectl -n <%= user_id %> get pod -l app=<%= crab_id %>",
+    upgrade_command: "kubectl apply -f <%= template %>",
+    restart_command: "kubectl -n <%= user_id %> rollout restart deployment <%= crab_id %>",
+    destroy_command: "kubectl delete -f <%= template %>"
   )
 end

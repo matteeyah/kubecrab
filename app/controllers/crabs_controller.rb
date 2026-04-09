@@ -20,6 +20,7 @@ class CrabsController < ApplicationController
 
     respond_to do |format|
       if @crab.save
+        DeployJob.perform_later(@crab)
         format.html { redirect_to crabs_path, notice: "Crab has been created." }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -28,15 +29,18 @@ class CrabsController < ApplicationController
   end
 
   def destroy
-    @crab.destroy!
+    DestroyJob.perform_later(@crab)
+    @crab.update!(status: :deleting)
     redirect_to crabs_path, notice: "Crab has been deleted."
   end
 
   def restart
+    RestartJob.perform_later(@crab)
     redirect_to crab_path(@crab), notice: "Crab is scheduled for restart."
   end
 
   def upgrade
+    UpgradeJob.perform_later(@crab)
     redirect_to crab_path(@crab), notice: "Crab is scheduled for upgrade."
   end
 

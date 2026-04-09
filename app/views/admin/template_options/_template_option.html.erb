@@ -1,9 +1,9 @@
 <%= turbo_frame_tag template_option do %>
   <%= form_for template_option, url: admin_template_option_path(template_option.template, template_option), method: :delete, html: {class: "mt-4 sm:flex sm:items-center"} do |form| %>
-    <%= form.label :name, class: "block pr-3 text-sm/6 font-medium text-gray-900 dark:text-white" %>
+    <%= form.label :name, class: css_label %>
     <div class="w-full">
-      <%= form.text_field :name, disabled: true, class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+      <%= form.text_field :name, disabled: true, class: "ml-3 #{css_text}" %>
     </div>
-    <%= form.submit "Delete", class: "ml-3 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400" %>
+    <%= form.submit "Delete", class: "ml-6 #{css_button_secondary}" %>
   <% end %>
 <% end %>

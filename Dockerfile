@@ -19,6 +19,10 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Install kubectl
+RUN curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubectl && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
@@ -68,6 +72,5 @@ USER 1000:1000
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start server via Thruster by default, this can be overwritten at runtime
-EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server"]
+EXPOSE 3000
+CMD ["./bin/rails", "server"]

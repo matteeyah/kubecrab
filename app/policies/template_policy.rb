@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class TemplatePolicy < ApplicationPolicy
+  def index?
+    true
+  end
+
   def permitted_attributes
     %i[name avatar description instruction template status engine_id]
   end

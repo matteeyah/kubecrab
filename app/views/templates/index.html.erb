@@ -14,8 +14,8 @@
         <div class="flex w-0 flex-1">
         </div>
         <div class="-ml-px flex w-0 flex-1">
-          <%= link_to new_crab_path({template_id: template.id}), class: "relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900 dark:text-white hover:bg-black/5 dark:hover:bg-gray-800" do %>
-            <%= heroicon "bolt", options: { class: "size-5 text-gray-400 dark:text-gray-500" } %>
+          <%= link_to new_crab_path({template_id: template.id}), class: "relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold bg-red-400 hover:bg-red-300 text-white" do %>
+            <%= heroicon "bolt", options: { class: "size-5 text-white" } %>
             Deploy
           <% end %>
         </div>

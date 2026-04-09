@@ -3,7 +3,7 @@
     <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">Crab Engines</h2>
   </div>
   <div class="mt-4 flex md:mt-0 md:ml-4">
-    <%= link_to "Add Engine", new_admin_engine_path, class: "ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-400" %>
+    <%= link_to "Add Engine", new_admin_engine_path, class: "ml-3 inline-flex items-center #{css_button}" %>
   </div>
 </div>
 
@@ -18,49 +18,49 @@
     <%= form_for engine, url: admin_engine_path(engine), html: {class: "md:col-span-2"} do |form| %>
       <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
         <div class="sm:col-span-full">
-          <%= form.label :deploy_command, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :deploy_command, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :deploy_command, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :deploy_command, autocomplete: "name", class: css_text %>
           </div>
           <%= form.error_message(:deploy_command) %>
         </div>
 
         <div class="sm:col-span-full">
-          <%= form.label :status_command, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :status_command, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :status_command, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :status_command, autocomplete: "name", class: css_text %>
           </div>
           <%= form.error_message(:status_command) %>
         </div>
 
         <div class="sm:col-span-full">
-          <%= form.label :update_command, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :upgrade_command, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :update_command, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :upgrade_command, autocomplete: "name", class: css_text %>
           </div>
-          <%= form.error_message(:update_command) %>
+          <%= form.error_message(:upgrade_command) %>
         </div>
 
         <div class="sm:col-span-full">
-          <%= form.label :restart_command, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :restart_command, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :restart_command, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :restart_command, autocomplete: "name", class: css_text %>
           </div>
           <%= form.error_message(:restart_command) %>
         </div>
 
         <div class="sm:col-span-full">
-          <%= form.label :destroy_command, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :destroy_command, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :destroy_command, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :destroy_command, autocomplete: "name", class: css_text %>
           </div>
           <%= form.error_message(:destroy_command) %>
         </div>
       </div>
 
       <div class="mt-8 flex sm:max-w-xl md:col-span-2">
-        <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500" %>
-        <%= link_to "Delete", admin_engine_path(engine), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ml-auto rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 dark:bg-red-500 dark:shadow-none dark:hover:bg-red-400" %>
+        <%= form.submit "Save", class: css_button %>
+        <%= link_to "Delete", admin_engine_path(engine), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ml-auto #{css_button_secondary}" %>
       </div>
     <% end %>
   </div>

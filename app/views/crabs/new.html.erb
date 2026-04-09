@@ -16,18 +16,18 @@
       <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
         <%= form.hidden_field :template_id %>
         <div class="sm:col-span-full">
-          <%= form.label :name, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :name, class: css_label %>
           <div class="mt-2">
-            <%= form.text_field :name, autocomplete: "name", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" %>
+            <%= form.text_field :name, autocomplete: "name", autofocus: true, class: css_text %>
           </div>
           <%= form.error_message(:name) %>
         </div>
 
         <% @crab.template.template_options.each do |option| %>
         <div class="sm:col-span-full">
-          <%= form.label option.name, class: "block text-sm/6 font-medium text-gray-900 dark:text-white" %>
+          <%= form.label option.name, class: css_label %>
           <div class="mt-2">
-            <input type="text" id="crab_<%= option.name %>" name="crab[options][<%= option.name %>]" autocomplete="none" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">
+            <input type="text" id="crab_<%= option.name %>" name="crab[options][<%= option.name %>]" autocomplete="none" required class="<%= css_text %>">
           </div>
           <%= form.error_message("crab[options][#{option.name}]") %>
         </div>
@@ -35,7 +35,7 @@
       </div>
 
       <div class="mt-8 flex">
-        <%= form.submit "Deploy!", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500" %>
+        <%= form.submit "Deploy!", class: css_button %>
       </div>
     <% end %>
   </div>

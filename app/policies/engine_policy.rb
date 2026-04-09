@@ -2,7 +2,7 @@
 
 class EnginePolicy < ApplicationPolicy
   def permitted_attributes
-    %i[name deploy_command status_command update_command restart_command destroy_command]
+    %i[name deploy_command status_command upgrade_command restart_command destroy_command]
   end
 
   class Scope < ApplicationPolicy::Scope

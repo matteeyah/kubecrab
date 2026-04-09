@@ -55,7 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_07_151101) do
     t.string "name", null: false
     t.string "deploy_command", null: false
     t.string "status_command", null: false
-    t.string "update_command", null: false
+    t.string "upgrade_command", null: false
     t.string "restart_command", null: false
     t.string "destroy_command", null: false
     t.datetime "created_at", null: false
