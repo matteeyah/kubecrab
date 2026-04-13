@@ -1,24 +1,36 @@
-# README
+# KubeCrab
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails app for user friendly Kubernetes deployment.
 
-Things you may want to cover:
+## Features
+- **Marketplace** - Users can deploy their crabs with a simple click
+- **Templates** - Admins define crab template which will become available in the marketplace
+- **Engines** - The templates are executed with an engine current engine supported is Kubernetes
+- **Custom Engines** - Add your own custom engine i.e. docker, terraform etc.
 
-* Ruby version
+## Quickstart
 
-* System dependencies
+### Build image
+Build the container:
+```ruby
+$ docker build -t kubecrab .
+```
 
-* Configuration
+### Export environment variable
+Before running docker-compose make sure to generate a secret key base:
+```ruby
+$ docker run -ti kubecrab bin/rails secret
+```
 
-* Database creation
+Export SECRET_KEY_BASE environment variable with the secret:
+```ruby
+$ export SECRET_KEY_BASE=4abcb02f4cf2bf...
+```
 
-* Database initialization
+### Run docker compose
+```ruby
+$ docker compose up
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Recommendations
+When all access to the app is happening through a SSL-terminating reverse proxy make sure to set environment variable ```RAILS_SSL=true```
